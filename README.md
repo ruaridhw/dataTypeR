@@ -6,6 +6,12 @@
 Check your data types; they're not what you think they are.
 
 ## Motivation
+
+When learning and studying data science techniques, many of the datasets
+utilised are pre-pepared, cleaned and tidy. Unfortunately, in the real
+world this is not the case. In fact, it is incredibly lucky if datasets
+from clients' systems are well-formed and as expected.
+
 This package provides a series of functions for profiling messy data,
 primarily focussed around honing in on 1-in-a-million cells causing
 headaches for type casting and/or DBMS upload.
