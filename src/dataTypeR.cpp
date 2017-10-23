@@ -10,6 +10,56 @@
 
 #define num_tests 9
 
+int cpp_samplesize(int n){
+  Rcpp::NumericVector x_numer;
+  Rcpp::NumericVector x_denom;
+  Rcpp::NumericVector p(1, 0.99);
+  Rcpp::NumericVector x;
+
+  double error = 0.01;
+  double prop  = 0.5;
+  x_numer   = Rcpp::qchisq(p, 1) * n * prop * (1 - prop);
+  x_denom = (error * error * (n-1)) + (Rcpp::qchisq(p, 1) * prop * (1 - prop));
+  x = ceil(x_numer / x_denom);
+  std::vector<int> x_int = Rcpp::as<std::vector<int> >(x);
+  return x_int[0];
+}
+
+template<class bidiiter>
+bidiiter random_unique(bidiiter begin, bidiiter end, size_t num_random){
+  size_t left = std::distance(begin, end);
+  while(num_random--){
+    bidiiter r = begin;
+    std::advance(r, rand()%left);
+    std::swap(*begin, *r);
+    ++begin;
+    --left;
+  }
+  return begin;
+}
+
+Rcpp::IntegerVector cpp_selectsample(int pop_size, int sample_size){
+  std::vector<int> a(pop_size);
+  Rcpp::IntegerVector b(sample_size);
+  for(int i=0; i<pop_size; ++i){
+    a[i] = i;
+  }
+  random_unique(a.begin(), a.end(), sample_size);
+  for(int i=0; i<sample_size; ++i){
+    b[i] = a[i];
+  }
+  return b;
+}
+
+std::vector<std::string> subsetCharVec(std::vector<std::string>& x, Rcpp::IntegerVector& index){
+  int n = index.size();
+  std::vector<std::string> out(n);
+  for(int i=0; i<n; i++){
+    out[i] = x.at(index[i]);
+  }
+  return out;
+}
+
 int regex_all_dates(std::vector<std::string>& cpp_data, int n){
   // Input:  pointer to std::vector<std::string>
   //         1000 values selected randomly from cpp_data
@@ -320,54 +370,4 @@ Rcpp::List cpp_dataTypeR(Rcpp::DataFrame df) {
   // out_df.attr("class") = "data.frame";
   // Rcpp::DataFrame df_final = Rcpp::DataFrame::create(out_df);
   return out_df;
-}
-
-int cpp_samplesize(int n){
-  Rcpp::NumericVector x_numer;
-  Rcpp::NumericVector x_denom;
-  Rcpp::NumericVector p(1, 0.99);
-  Rcpp::NumericVector x;
-
-  double error = 0.01;
-  double prop  = 0.5;
-  x_numer   = Rcpp::qchisq(p, 1) * n * prop * (1 - prop);
-  x_denom = (error * error * (n-1)) + (Rcpp::qchisq(p, 1) * prop * (1 - prop));
-  x = ceil(x_numer / x_denom);
-  std::vector<int> x_int = Rcpp::as<std::vector<int> >(x);
-  return x_int[0];
-}
-
-template<class bidiiter>
-bidiiter random_unique(bidiiter begin, bidiiter end, size_t num_random){
-  size_t left = std::distance(begin, end);
-  while(num_random--){
-    bidiiter r = begin;
-    std::advance(r, rand()%left);
-    std::swap(*begin, *r);
-    ++begin;
-    --left;
-  }
-  return begin;
-}
-
-Rcpp::IntegerVector cpp_selectsample(int pop_size, int sample_size){
-  std::vector<int> a(pop_size);
-  Rcpp::IntegerVector b(sample_size);
-  for(int i=0; i<pop_size; ++i){
-    a[i] = i;
-  }
-  random_unique(a.begin(), a.end(), sample_size);
-  for(int i=0; i<sample_size; ++i){
-    b[i] = a[i];
-  }
-  return b;
-}
-
-std::vector<std::string> subsetCharVec(std::vector<std::string>& x, Rcpp::IntegerVector& index){
-  int n = index.size();
-  std::vector<std::string> out(n);
-  for(int i=0; i<n; i++){
-    out[i] = x.at(index[i]);
-  }
-  return out;
 }
