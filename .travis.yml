@@ -12,11 +12,12 @@ r:
 matrix:
   include:
     - os: linux
-      before_install:
-        - sudo apt-get -qq update
-        - sudo apt-get install -y libboost-regex-dev
     - os: osx
       before_install:
         - brew install boost
       latex: false
 
+addons:
+  apt:
+    packages:
+      - libboost-regex-dev
