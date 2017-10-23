@@ -6,7 +6,7 @@
 #include <cstdlib>
 
 #include <Rcpp.h>
-#include <dataTypeR.h>
+#include "dataTypeR.h"
 
 #define num_tests 9
 
