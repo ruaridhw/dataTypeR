@@ -1,0 +1,2 @@
+PKG_CPPFLAGS=-I../inst/include
+PKG_LIBS=-lboost_regex `$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"`
