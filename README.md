@@ -48,5 +48,47 @@ devtools::install_github("ruaridhw/dataTypeR")
 
 ```r
 library(nycflights13)
+library(dataTypeR)
 dataTypeR(flights)
+#>                Null Date Time   Integer Double Character Max_Double_Len
+#> year              0   NA   NA 100.00000     NA         0             NA
+#> month             0    0   NA 100.00000     NA         0             NA
+#> day               0    0   NA 100.00000     NA         0             NA
+#> dep_time          0   NA   NA 100.00000     NA         0             NA
+#> sched_dep_time    0   NA   NA 100.00000     NA         0             NA
+#> dep_delay         0   NA   NA  97.54882    100         0              0
+#> arr_time          0   NA   NA 100.00000     NA         0             NA
+#> sched_arr_time    0   NA   NA 100.00000     NA         0             NA
+#> arr_delay         0   NA   NA  97.19992    100         0              0
+#> carrier           0    0    0   0.00000      0       100              0
+#> flight            0   NA   NA 100.00000     NA         0             NA
+#> tailnum           0    0    0   0.00000      0       100              0
+#> origin            0    0    0   0.00000      0       100              0
+#> dest              0    0    0   0.00000      0       100              0
+#> air_time          0   NA   NA  97.19992    100         0              0
+#> distance          0   NA   NA 100.00000    100         0              0
+#> hour              0    0   NA 100.00000    100         0              0
+#> minute            0    0   NA 100.00000    100         0              0
+#> time_hour         0    0   NA   0.00000    100         0              0
+#>
+#>                Max_Char_Len Date_Code Perfect_Type_Match     Data Type
+#> year                     NA        NA                  1       integer
+#> month                    NA        NA                  1       integer
+#> day                      NA        NA                  1       integer
+#> dep_time                 NA        NA                  1       integer
+#> sched_dep_time           NA        NA                  1       integer
+#> dep_delay                NA        NA                  1 decimal(18,0)
+#> arr_time                 NA        NA                  1       integer
+#> sched_arr_time           NA        NA                  1       integer
+#> arr_delay                NA        NA                  1 decimal(18,0)
+#> carrier                   2        NA                  1    varchar(2)
+#> flight                   NA        NA                  1       integer
+#> tailnum                   6        NA                  1    varchar(6)
+#> origin                    3        NA                  1    varchar(3)
+#> dest                      3        NA                  1    varchar(3)
+#> air_time                 NA        NA                  1 decimal(18,0)
+#> distance                 NA        NA                  1       integer
+#> hour                     NA        NA                  1       integer
+#> minute                   NA        NA                  1       integer
+#> time_hour                NA        NA                  1 decimal(18,0)
 ```

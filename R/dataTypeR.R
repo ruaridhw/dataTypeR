@@ -35,8 +35,8 @@ dataTypeR <- function(df){
   out[, 1:10] <- sapply(out[, 1:10], function(x) as.numeric(x))
   out[, 1:6] <- out[, 1:6] * 100
   names(out) <- c("Null", "Date", "Time", "Integer", "Double", "Character",
-                  "Max Double Len", "Max Char Len", "Date Code",
-                  "Perfect Type Match" , "Data Type")
+                  "Max_Double_Len", "Max_Char_Len", "Date_Code",
+                  "Perfect_Type_Match" , "Data_Type")
   row.names(out) <- names(df)
   out
 }
