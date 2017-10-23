@@ -5,16 +5,16 @@ sudo: false
 cache: packages
 
 r:
-  - oldrel
-  - release
-  - devel
+- oldrel
+- release
+- devel
 
 matrix:
   include:
     - os: linux
       before_install:
-        - apt-get -qq update
-        - apt-get install -y libboost-regex-dev
+        - sudo apt-get -qq update
+        - sudo apt-get install -y libboost-regex-dev
     - os: osx
       before_install:
         - brew install boost
