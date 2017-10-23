@@ -5,7 +5,7 @@
 #' order to suggest the \strong{most likely}
 #' overall data type
 #'
-#' @param data An R object to be coerced into a data frame
+#' @param df An R object to be coerced into a data frame
 #'
 #' @details
 #' The regular expression tests employed search for possible
@@ -29,6 +29,7 @@
 
 dataTypeR <- function(df){
   out <- cpp_dataTypeR(df) %>%
+    as.data.frame %>%
     t %>%
     as.data.frame(stringsAsFactors = F)
   out[, 1:10] <- sapply(out[, 1:10], function(x) as.numeric(x))
