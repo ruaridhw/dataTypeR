@@ -17,6 +17,7 @@
 #' @export
 #' @useDynLib dataTypeR, .registration = TRUE
 #' @importFrom Rcpp sourceCpp
+#' @importFrom magrittr %>%
 #' @return
 #' data.frame Columns tested for various data types and the percentage
 #' likelihood of each data type tested
