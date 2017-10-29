@@ -4,17 +4,18 @@ language: R
 sudo: false
 cache: packages
 
-r:
-- oldrel
-- release
-- devel
-
 matrix:
   include:
     - os: linux
+      r: release
+    - os: linux
+      r: oldrel
+    - os: linux
+      r: devel
     - os: osx
+      r: release
       before_install:
-        - brew install boost
+        - brew upgrade boost
       latex: false
 
 warnings_are_errors: false
