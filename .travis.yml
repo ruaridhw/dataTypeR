@@ -17,6 +17,11 @@ matrix:
       before_install:
         - brew upgrade boost
       latex: false
+    - os: osx
+      r: oldrel
+      before_install:
+        - brew upgrade boost
+      latex: false
 
 warnings_are_errors: false
 
