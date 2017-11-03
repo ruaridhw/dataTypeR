@@ -11,7 +11,8 @@ install:
   - ps: Bootstrap
   - cd %BOOST_ROOT%
   - call bootstrap.bat mingw
-  - .\b2 toolset=gcc variant=release --with-thread --with-system
+  - .\b2 toolset=msvc-14.0 variant=release --with-regex --stagedir=stage\lib64 address-model=64 --build-type=complete --threading=multi
+  - .\b2 toolset=msvc-14.0 variant=release --with-regex --stagedir=stage\lib32 address-model=32 --build-type=complete --threading=multi --reconfigure
   - set PATH=%BOOST_ROOT%;%PATH%
   - cd %APPVEYOR_BUILD_FOLDER%
 
@@ -26,9 +27,9 @@ environment:
     WARNINGS_ARE_ERRORS:
     USE_RTOOLS: true
     GCC_PATH: mingw_64
-    BOOST_ROOT: C:\Libraries\boost_1_60_0
-    BOOST_LIBRARYDIR: C:\Libraries\boost_1_60_0\lib
-    BOOST_INCLUDEDIR: C:\Libraries\boost_1_60_0\include\boost
+    BOOST_ROOT: C:\Libraries\boost_1_59_0
+    BOOST_LIBRARYDIR: C:\Libraries\boost_1_59_0\lib
+    BOOST_INCLUDEDIR: C:\Libraries\boost_1_59_0\include\boost
 
 build_script:
   - travis-tool.sh install_deps
