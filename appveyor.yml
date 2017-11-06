@@ -9,11 +9,10 @@ init:
 
 install:
   - ps: Bootstrap
+  - set PATH=C:/Rtools/mingw_32/bin;%PATH%
   - cd %BOOST_ROOT%
   - call bootstrap.bat mingw
-  - .\b2 toolset=msvc-14.0 variant=release --with-regex --stagedir=stage\lib64 address-model=64 --build-type=complete --threading=multi
-  - .\b2 toolset=msvc-14.0 variant=release --with-regex --stagedir=stage\lib32 address-model=32 --build-type=complete --threading=multi --reconfigure
-  - set PATH=%BOOST_ROOT%;%PATH%
+  - .\b2 --toolset=gcc --with-regex address-model=32
   - cd %APPVEYOR_BUILD_FOLDER%
 
 cache:

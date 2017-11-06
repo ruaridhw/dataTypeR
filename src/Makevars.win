@@ -1,2 +1,2 @@
 PKG_CPPFLAGS=-I../inst/include -IC:/Libraries/boost_1_59_0
-PKG_LIBS=-LC:/Libraries/boost_1_59_0/stage/lib64/lib -lboost_regex-mgw49-mt-1_59 -LC:/Libraries/boost_1_59_0/stage/lib32/lib -lboost_regex-mgw49-mt-1_59 `$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"`
+PKG_LIBS=-LC:/Libraries/boost_1_59_0/stage/lib -lboost_regex-mgw49-mt-1_59 `$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"`
