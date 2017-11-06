@@ -8,12 +8,27 @@ init:
         Import-Module '..\appveyor-tool.ps1'
 
 install:
-  ps: Bootstrap
+  - ps: Bootstrap
+  - set PATH=C:/Rtools/mingw_32/bin;%PATH%
+  - cd %BOOST_ROOT%
+  - call bootstrap.bat mingw
+  - .\b2 --toolset=gcc --with-regex address-model=32
+  - cd %APPVEYOR_BUILD_FOLDER%
 
 cache:
   - C:\RLibrary
 
 # Adapt as necessary starting from here
+
+environment:
+  global:
+    CRAN: http://cloud.r-project.org/
+    WARNINGS_ARE_ERRORS:
+    USE_RTOOLS: true
+    GCC_PATH: mingw_64
+    BOOST_ROOT: C:\Libraries\boost_1_59_0
+    BOOST_LIBRARYDIR: C:\Libraries\boost_1_59_0\lib
+    BOOST_INCLUDEDIR: C:\Libraries\boost_1_59_0\include\boost
 
 build_script:
   - travis-tool.sh install_deps
